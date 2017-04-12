@@ -1,0 +1,34 @@
+{% extends 'slike/base.html' %}
+{% block title %} - Slike {% endblock %}
+{% block content %}
+
+    <h3>{{ user.username }} slike</h3>
+
+
+
+    {% if slike %}
+
+       
+           
+        {% for slika in slike %}
+
+            <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{{ slika.slika.url }}">
+                         <img src="{{ slika.slika.url }}" class="img-responsive">
+                         </a> 
+                       
+                    </div>
+                </div>
+            {% endfor %}
+    {% else %}
+            <div class="col-sm-12">
+                <br>
+                <h2>Nema slika</h2>
+            </div>
+        {% endif %}
+
+    {% endblock %}
+
+
+
