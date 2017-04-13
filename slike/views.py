@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from .models import Slike
 from .forms import UserForm
+from django.http import HttpResponseRedirect
 
 def index(request):
     if not request.user.is_authenticated():
@@ -25,8 +26,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                slike = Slike.objects.all()
-                return render(request, 'slike/index.html', {'slike': slike})
+                return HttpResponseRedirect('/slike')
             else:
                 return render(request, 'slike/login.html', {'error_message': 'Your account has been disabled'})
         else:
